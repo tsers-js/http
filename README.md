@@ -44,7 +44,9 @@ HTTP driver provides one transducer function
 
 Takes an input stream of request objects and returns a stream of **cold 
 response streams** associated to the given request objects: one request 
-object produces **exactly one** response stream.
+object produces **exactly one** response stream. The actual response
+is superagent's [response](https://visionmedia.github.io/superagent/#response-properties) 
+object.
 
 Request object can have the following params:
 
