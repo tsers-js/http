@@ -16,7 +16,7 @@ function makeHTTPDriver(base = "") {
       fields,
       attachments,
       auth,
-      withCredentials = false,
+      cors = false,
       headers = {},
       type = "json",
       method = "get"
@@ -32,7 +32,7 @@ function makeHTTPDriver(base = "") {
     isDef(send) && (req = req.send(send))
     isDef(accept) && (req = req.accept(accept))
     isDef(query) && (req = req.query(query))
-    withCredentials === true && (req = req.withCredentials())
+    cors === true && (req = req.withCredentials())
     auth && isDef(auth.user) && isDef(auth.password) && (req = req.auth(auth.user, auth.password))
     keys(headers).forEach(h => req = req.set(h, headers[h]))
     keys(fields).forEach(f => req = req.field(f, fields[f]))
