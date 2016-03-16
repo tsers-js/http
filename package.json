@@ -28,6 +28,7 @@
     "minify": "uglifyjs -c -m -- dist/tsers.http.js > dist/tsers.http.min.js"
   },
   "dependencies": {
+    "superagent": "^1.8.1"
   },
   "peerDependencies": {
     "rx": "4.x"
