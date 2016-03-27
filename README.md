@@ -18,7 +18,7 @@ npm i --save @tsers/http
 
 ### Using the interpreter
 
-`@tsers/http` provides a factory function, that can be used to construct the
+`@tsers/http` provides a factory function which can be used to construct the actual
 interpreter. That factory function takes one optional parameter: `baseUrl` which
 will be prepended to the all request urls. If `baseUrl` is not given, then request
 URLs are used as they are.
@@ -26,8 +26,9 @@ URLs are used as they are.
 ```javascript
 import TSERS from "@tsers/core"
 import HTTP from "@tsers/http"
+import main from "./YourApp"
 
-const [T, S, E] = TSERS({
+TSERS(main, {
   HTTP: HTTP(),               // HTTP.request({url: "/foo"}) uses url "/foo"
   API: HTTP("/my/api/v1")     // API.request({url: "/foo"}) uses url "/my/api/v1/foo"
 })
