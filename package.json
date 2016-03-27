@@ -2,7 +2,7 @@
   "name": "@tsers/http",
   "version": "0.2.0",
   "private": false,
-  "description": "TSERSful HTTP driver",
+  "description": "TSERSful HTTP interpreter",
   "main": "dist/tsers.http.js",
   "author": "Matti Lankinen <m.lankinen@iki.fi> (https://github.com/milankinen)",
   "license": "MIT",
@@ -13,8 +13,8 @@
   "keywords": [
     "rxjs",
     "reactive",
-    "tsers",
-    "driver",
+    "TSERS",
+    "interpreter",
     "http"
   ],
   "scripts": {
