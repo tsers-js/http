@@ -6,7 +6,7 @@ const isDef = x => typeof x !== "undefined"
 const keys = x => x ? Object.keys(x) : []
 
 
-function makeHTTPDriver(base = "") {
+export default function makeHTTP(base = "") {
   function paramsToReq(params) {
     const {
       url,
@@ -65,13 +65,8 @@ function makeHTTPDriver(base = "") {
     return req$.map(params => toRes$(isFun(params) ? params(superagent) : paramsToReq(params)))
   }
 
-  return function HTTPDriver() {
-    const Transducers = { request }
-    const signal$ = null
-    const executor = null
-    return [Transducers, signal$, executor]
+  return function HTTP() {
+    const Transforms = {request}
+    return [Transforms, null]
   }
 }
-
-module.exports = makeHTTPDriver
-module.exports.default = makeHTTPDriver
