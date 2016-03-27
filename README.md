@@ -1,4 +1,6 @@
-# TSERSful HTTP Driver
+# TSERSful HTTP Interpreter
+
+Make HTTP requests from your applications in a TSERSful way.
 
 [![Travis Build](https://img.shields.io/travis/tsers-js/http/master.svg?style=flat-square)](https://travis-ci.org/tsers-js/http)
 [![Code Coverage](https://img.shields.io/codecov/c/github/tsers-js/http/master.svg?style=flat-square)](https://codecov.io/github/tsers-js/http)
@@ -14,31 +16,28 @@
 npm i --save @tsers/http
 ``` 
 
-### Using the driver
+### Using the interpreter
 
-`@tsers/http` returns a factory function which can be used to create
-the HTTP driver. Factory function takes one optional parameter: `baseUrl` which
-will be prepended to the all request urls. 
+`@tsers/http` provides a factory function, that can be used to construct the
+interpreter. That factory function takes one optional parameter: `baseUrl` which
+will be prepended to the all request urls. If `baseUrl` is not given, then request
+URLs are used as they are.
 
 ```javascript
 import TSERS from "@tsers/core"
-import makeHTTP from "@tsers/http"
+import HTTP from "@tsers/http"
 
 const [T, S, E] = TSERS({
-  HTTP: makeHTTP(),               // HTTP.request({url: "/foo"}) uses url "/foo"
-  API: makeHTTP("/my/api/v1")     // API.request({url: "/foo"}) uses url "/my/api/v1/foo"
+  HTTP: HTTP(),               // HTTP.request({url: "/foo"}) uses url "/foo"
+  API: HTTP("/my/api/v1")     // API.request({url: "/foo"}) uses url "/my/api/v1/foo"
 })
 ```
 
 ## API reference
 
-### Input signals
+### Signals
 
-HTTP driver doesn't emit any input signals.
-
-### Transducers
-
-HTTP driver provides one transducer function
+HTTP interpreter provides one signal transform function
 
 #### `request :: req$ => res$$` 
 
@@ -86,9 +85,9 @@ const advancedRes$$ = HTTP.request(advancedReq$)
 const advancedRes$ = advancedRes$$.switch()
 ```
 
-### Output signals
+### Output
 
-HTTP driver doesn't take any output signals
+HTTP interpreter doesn't expect any output signals from the application.
 
 ## License
 
