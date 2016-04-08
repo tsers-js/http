@@ -30,9 +30,6 @@
   "dependencies": {
     "superagent": "^1.8.3"
   },
-  "peerDependencies": {
-    "rx": "4.x"
-  },
   "devDependencies": {
     "babel-cli": "^6.6.5",
     "babel-eslint": "^6.0.0",
