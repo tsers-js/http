@@ -1,4 +1,3 @@
-import {Observable as O} from "rx"
 import superagent from "superagent"
 
 const isFun = x => x && typeof x === "function"
@@ -43,29 +42,29 @@ export default function makeHTTP(base = "") {
     return req
   }
 
-  function toRes$(req) {
-    return O.create(o => {
-      try {
-        req.end((err, res) => {
-          if (err) {
-            o.onError(err)
-          } else {
-            o.onNext(res)
-            o.onCompleted()
-          }
-        })
-      } catch (err) {
-        o.onNext(err)
-      }
-      return () => req.abort()
-    })
-  }
+  return function HTTP({O}) {
+    function toRes$(req) {
+      return O.create(o => {
+        try {
+          req.end((err, res) => {
+            if (err) {
+              o.error(err)
+            } else {
+              o.next(res)
+              o.completed()
+            }
+          })
+        } catch (err) {
+          o.error(err)
+        }
+        return () => req.abort()
+      }).get()
+    }
 
-  function request(req$) {
-    return req$.map(params => toRes$(isFun(params) ? params(superagent) : paramsToReq(params)))
-  }
+    function request(req$) {
+      return new O(req$).map(params => toRes$(isFun(params) ? params(superagent) : paramsToReq(params))).get()
+    }
 
-  return function HTTP() {
     const Transforms = {request}
     return [Transforms, null]
   }
