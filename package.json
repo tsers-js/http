@@ -1,6 +1,6 @@
 {
   "name": "@tsers/http",
-  "version": "1.0.0",
+  "version": "2.0.0-alpha1",
   "private": false,
   "description": "TSERSful HTTP interpreter",
   "main": "dist/tsers.http.js",
